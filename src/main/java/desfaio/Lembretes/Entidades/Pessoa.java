@@ -16,6 +16,6 @@ public class Pessoa {
     private String nome;
 
 
-
-
+    public Pessoa(long l, String joao) {
+    }
 }

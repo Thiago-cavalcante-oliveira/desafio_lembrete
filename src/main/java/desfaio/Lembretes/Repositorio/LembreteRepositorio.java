@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface LembreteRepositorio extends JpaRepository<Lembretes, Long> {
 
-    @Query("select lembrete from Lembretes lembrete where lembrete.pessoa = :pessoa")
+    @Query("select lembrete from Lembretes lembrete where lembrete.pessoa.id = :pessoa")
     public List<Lembretes> listaLembretes(@RequestParam("pessoa") Long pessoa);
 }

@@ -1,9 +1,11 @@
 package desfaio.Lembretes;
 
 import desfaio.Lembretes.Controller.PessoaController;
+import desfaio.Lembretes.DTO.PessoaDTO;
 import desfaio.Lembretes.Entidades.Pessoa;
 import desfaio.Lembretes.Repositorio.PessoaRepositorio;
 import desfaio.Lembretes.Service.PessoaService;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +32,9 @@ class LembretesApplicationTests {
 
     @BeforeEach
     void injectDado() {
-        Optional<Pessoa> pessoa = Optional.of(new Pessoa(1l, "Joao"));
+        PessoaDTO pessoa = new PessoaDTO();
+        pessoa.setId(1l);
+        pessoa.setNome("Joao");
         Long id = 1l;
         Mockito.when(pessoaRepositorio.findById(id)).thenReturn(pessoa);
     }
@@ -50,7 +54,7 @@ pessoa.add(new Pessoa(3l, "Jose"));
     public void testeControllerPessoaFindbyName() {
         var pessoController = pessoaController.retornaPessoa("Joao");
         Long id = pessoController.getBody().getId().longValue();
-        Assertions.assertEquals(1l, id, 0);
+        Assert.assertEquals(1l, id, 0);
     }
 
     @Test

@@ -1,11 +1,13 @@
 package desfaio.Lembretes.Entidades;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="tb_lembretes", schema = "public")
 public class Lembretes {
 
@@ -16,6 +18,11 @@ public class Lembretes {
 
     @Getter @Setter
     private String lembrete;
+
+    @Getter @Setter
+    @ManyToOne
+    private Pessoa pessoa;
+
 
 
 }

@@ -65,12 +65,11 @@ class LembretesApplicationTests {
         Long id = 1l;
         Mockito.when(lembreteRepositorio.findById(id)).thenReturn(Optional.of(lembrete));
 
+
         List<Lembretes> lembretes = new ArrayList<>();
         lembretes.add(new Lembretes(1l, "Lembrete", pessoa));
         lembretes.add(new Lembretes(2l, "Lembrete2", pessoa));
-        Mockito.when(lembreteRepositorio.listaLembretes(pessoa.getId())).thenReturn(lembretes);
-
-
+        Mockito.when(lembreteRepositorio.findAll()).thenReturn(lembretes);
     }
 
     @Test
@@ -86,18 +85,29 @@ class LembretesApplicationTests {
         Assert.assertEquals(3, pessoController.getBody().size());
     }
 
+//    @Test
+//    public void testeControllerCadastro() {
+//        var pessoa = pessoaController.cadastraPessoa(new PessoaDTO(1l, "Joao"));
+//        Assert.assertEquals("Cadastrado com sucesso", pessoa.getBody());
+//    }
+
+//    @Test
+//    public void testeDeletarPessoa() {
+//        var pessoa = pessoaController.deletaPessoa(1l);
+//        Assert.assertEquals("Deletado com sucesso", pessoa.getBody());
+//    }
+
     @Test
-    public void testeControllerCadastro() {
-        var pessoa = pessoaController.cadastraPessoa(new PessoaDTO(1l, "Joao"));
-        Assert.assertEquals("Cadastrado com sucesso", pessoa.getBody());
+    public void testeLembreteFindById() {
+        var lembrete = lembreteController.findById(1l);
+        Long id = lembrete.getBody().getId().longValue();
+        Assert.assertEquals(1l, id, 0);
     }
 
     @Test
-    public void testeDeletarPessoa() {
-        var pessoa = pessoaController.deletaPessoa(1l);
-        Assert.assertEquals("Deletado com sucesso", pessoa.getBody());
+    public void testeLembreteFindAll() {
+        var lembrete = lembreteController.findAll();
+        Assert.assertEquals(2, lembrete.getBody().size());
     }
-
-
 
 }

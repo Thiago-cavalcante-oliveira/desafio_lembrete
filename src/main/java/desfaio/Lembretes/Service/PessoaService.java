@@ -39,7 +39,7 @@ public class PessoaService {
     public String cadastraPessoa(PessoaDTO pessoaDTO) {
         Pessoa pessoa = transformToEntity(pessoaDTO);
         this.pessoaRepositorio.save(pessoa);
-        return "CAdastrado com sucesso";
+        return "Cadastrado com sucesso";
     }
 
 
@@ -54,6 +54,7 @@ public class PessoaService {
     public String deletarPessoa(Long id){
       Optional<Pessoa> pessoa = this.pessoaRepositorio.findById(id);
         if(pessoa.isPresent()){
+
             this.pessoaRepositorio.deleteById(id);
             return "Deletado com sucesso";        }
     else{
